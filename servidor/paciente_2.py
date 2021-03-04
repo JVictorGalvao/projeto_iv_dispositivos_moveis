@@ -22,26 +22,26 @@ def cria_paciente(nome: str):
 def atualiza_batimentos(batimento: int):
     headers = {'content-type': 'application/json'}
     payload = {'batimento_cardiaco': batimento}
-    r = requests.put('http://127.0.0.1:8000/paciente/1/batimentos', data=json.dumps(payload), headers=headers)
+    r = requests.put('http://127.0.0.1:8000/paciente/2/batimentos', data=json.dumps(payload), headers=headers)
 
     print(r.text)
 
 def atualiza_oxigenacao(oxigenacao: int):
     headers = {'content-type': 'application/json'}
     payload = {'oxigenacao': oxigenacao}
-    r = requests.put('http://127.0.0.1:8000/paciente/1/oxigenacao', data=json.dumps(payload), headers=headers)
+    r = requests.put('http://127.0.0.1:8000/paciente/2/oxigenacao', data=json.dumps(payload), headers=headers)
 
     print(r.text)
 
 def atualiza_ultrassom(ultrassom: str):
     headers = {'content-type': 'application/json'}
     payload = {'ultrassom': ultrassom}
-    r = requests.put('http://127.0.0.1:8000/paciente/1/ultrassom', data=json.dumps(payload), headers=headers)
+    r = requests.put('http://127.0.0.1:8000/paciente/2/ultrassom', data=json.dumps(payload), headers=headers)
 
     print(r.text)
 
 def main():
-    cria_paciente("João")
+    cria_paciente("Maria")
     atualiza_oxigenacao(random.randint(0,120))
     atualiza_batimentos(random.randint(0,120))
     atualiza_ultrassom(imagens[random.randint(0,4)])
