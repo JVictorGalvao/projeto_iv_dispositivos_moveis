@@ -56,7 +56,7 @@ def update_oxigenacao(paciente_id: int, dados: Oxigenacao):
     db[paciente_id-1] = jsonable_encoder(updated_paciente)
     return updated_paciente
 
-@app.put('/paciente/{paciente_id}/ultrasom')
+@app.put('/paciente/{paciente_id}/ultrassom')
 def update_oxigenacao(paciente_id: int, dados: Ultrassom):
     stored_paciente_data = db[paciente_id-1]
     stored_paciente_model = Paciente(**stored_paciente_data)
