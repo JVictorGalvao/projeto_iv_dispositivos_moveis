@@ -9,3 +9,6 @@ Desenvolver uma aplicação que consiste em um aplicativo de monitoramento em te
 A Api foi construída com o framework FASTAPI, ela possui GETs para obter os pacientes e PUTs para atualizar as informações, um script em python
 vai fornecer os dados, emulando os aparelhos e dados vitais. 
 
+## Aplicatico
+
+O aplicativo foi construído utilizando ReactNative + TypeScript + Expo
