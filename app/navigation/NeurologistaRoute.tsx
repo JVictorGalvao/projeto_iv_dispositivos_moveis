@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { Dimensions } from "react-native"
 import { createStackNavigator } from "@react-navigation/stack"
 import NeurologistaHome from "../screens/NeurologistaHome"
+import PacienteScreen from "../screens/PacienteScreen"
 
 const Stack = createStackNavigator()
 
@@ -19,6 +20,7 @@ function NeurologistaStack(){
     return(
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="NeurologistaHome" component={NeurologistaHome} />
+            <Stack.Screen name="PacienteScreen" component={PacienteScreen} />
         </Stack.Navigator>
     )
 }
