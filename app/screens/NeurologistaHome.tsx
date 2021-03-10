@@ -5,6 +5,7 @@ import { Separator } from '../components/Separator';
 import api from '../service/api';
 import CardPaciente from '../components/Card';
 import ScreenTitle from '../components/ScreenTitle';
+import { maxValue, minValue } from '../constants/Constants';
 
 export default function NeurologistaHome() {
   const [pacientes, setPacientes] = useState([]);
@@ -33,7 +34,9 @@ export default function NeurologistaHome() {
           <React.Fragment key={index}>
             <CardPaciente
               index={index}
-              cor={(paciente.oxigenacao <=10 || paciente.batimento_cardiaco <=10) ? '#ff726f' : '#d7f2f3'}
+              cor={(paciente.oxigenacao <= minValue || paciente.batimento_cardiaco <=minValue
+                || paciente.oxigenacao >= maxValue || paciente.batimento_cardiaco >= maxValue) ? 
+                '#ff726f' : '#d7f2f3'}
               nome={paciente.nome}
               batimento_cardiaco={paciente.batimento_cardiaco}
               oxigenacao={paciente.oxigenacao}

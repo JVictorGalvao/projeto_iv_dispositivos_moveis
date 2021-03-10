@@ -38,7 +38,7 @@ const CardPaciente: React.FC<CardProps> = ({
                     params: {index: index}})}>
                         Ver dados
                 </Button>
-                <Separator size={64}/>
+                <Separator size={56}/>
                 <Button mode='contained' color="white"
                     onPress={()=> navigation.navigate("NeurologistaStack", {
                     screen: "IntervencaoScreen",
