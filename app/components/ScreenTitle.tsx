@@ -9,7 +9,7 @@ interface ScreenContainerProps {
   style?: ViewStyle
 }
 
-const ScreenTitle: React.SFC<ScreenContainerProps> = props => {
+const ScreenTitle: React.FC<ScreenContainerProps> = props => {
   return (
     <View style={[styles.titleContainer, props.style]}>
       <Text style={styles.header}>{props.title}</Text>

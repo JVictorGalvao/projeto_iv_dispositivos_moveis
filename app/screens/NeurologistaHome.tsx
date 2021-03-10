@@ -27,7 +27,7 @@ export default function NeurologistaHome() {
         title="Pacientes "/>
       <Separator vertical size={24}/>
       {pacientes.map((
-        paciente: { oxigenacao: number; batimento_cardiaco: number; nome: string; },
+        paciente: { oxigenacao: number, batimento_cardiaco: number, nome: string, ultrassom: string },
         index: string | number | null | undefined) => {
         return(
           <React.Fragment key={index}>
@@ -37,6 +37,7 @@ export default function NeurologistaHome() {
               nome={paciente.nome}
               batimento_cardiaco={paciente.batimento_cardiaco}
               oxigenacao={paciente.oxigenacao}
+              ultrassom={paciente.ultrassom}
             />
             <Separator vertical size={24}/>
           </React.Fragment>

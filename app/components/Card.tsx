@@ -10,6 +10,7 @@ interface CardProps{
     batimento_cardiaco: number
     oxigenacao: number
     cor: string
+    ultrassom: string
 }
 
 const CardPaciente: React.FC<CardProps> = ({
@@ -17,7 +18,8 @@ const CardPaciente: React.FC<CardProps> = ({
     nome,
     batimento_cardiaco,
     oxigenacao,
-    cor
+    cor,
+    ultrassom
 }) => {
     const navigation = useNavigation()
     //console.log(index)
@@ -33,9 +35,17 @@ const CardPaciente: React.FC<CardProps> = ({
                 <Button mode='contained' color="white"
                     onPress={()=> navigation.navigate("NeurologistaStack", {
                     screen: "PacienteScreen",
-                    params: {index: index}})}>Ver dados</Button>
+                    params: {index: index}})}>
+                        Ver dados
+                </Button>
                 <Separator size={64}/>
-                <Button mode='contained' color="white" labelStyle={{}} style={{}}>Propor intervenção</Button>
+                <Button mode='contained' color="white"
+                    onPress={()=> navigation.navigate("NeurologistaStack", {
+                    screen: "IntervencaoScreen",
+                    params: {nome: nome, batimento_cardiaco: batimento_cardiaco,
+                    oxigenacao: oxigenacao, ultrassom: ultrassom}})}>
+                        Propor intervenção
+                </Button>
             </Card.Actions>
         </Card>      
     )
