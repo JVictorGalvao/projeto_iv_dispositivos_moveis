@@ -74,7 +74,7 @@ export default function PacienteScreen() {
                 <Button mode='contained' color="#d7f2f3"
                     onPress={()=> navigation.navigate("NeurologistaStack", {
                     screen: "IntervencaoScreen",
-                    params: {nome: paciente.nome, batimento_cardiaco: paciente.batimento_cardiaco,
+                    params: {index: route.params?.id, nome: paciente.nome, batimento_cardiaco: paciente.batimento_cardiaco,
                     oxigenacao: paciente.oxigenacao, ultrassom: paciente.ultrassom}})}>
                         Propor intervenção
                 </Button>

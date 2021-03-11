@@ -22,7 +22,7 @@ const CardPaciente: React.FC<CardProps> = ({
     ultrassom
 }) => {
     const navigation = useNavigation()
-    //console.log(index)
+    console.log(index)
 
     return(
         <Card style={{backgroundColor: cor}}> 
@@ -42,7 +42,7 @@ const CardPaciente: React.FC<CardProps> = ({
                 <Button mode='contained' color="white"
                     onPress={()=> navigation.navigate("NeurologistaStack", {
                     screen: "IntervencaoScreen",
-                    params: {nome: nome, batimento_cardiaco: batimento_cardiaco,
+                    params: {index: index, nome: nome, batimento_cardiaco: batimento_cardiaco,
                     oxigenacao: oxigenacao, ultrassom: ultrassom}})}>
                         Propor intervenção
                 </Button>

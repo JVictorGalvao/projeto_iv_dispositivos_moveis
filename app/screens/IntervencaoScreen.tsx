@@ -14,7 +14,6 @@ import BackButton from '../components/BackButton';
 export default function IntervencaoScreen() {
     const route: any = useRoute()
 
-
     return( 
         <ScreenContainer>
             <BackButton />
@@ -47,7 +46,7 @@ export default function IntervencaoScreen() {
                         source={{uri: `${route.params?.ultrassom}`}}/>
                 </View>
                 <Separator vertical size={42}/>
-                <SimpleTextInput/>
+                <SimpleTextInput paciente_id={route.params?.index}/>
         </ScreenContainer>
     );        
 };

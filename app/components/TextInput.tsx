@@ -3,13 +3,21 @@ import { Ionicons } from '@expo/vector-icons';
 import { View } from "react-native";
 import { Button, TextInput } from 'react-native-paper';
 import { Separator } from "./Separator";
+import api from "../service/api";
 
 interface TextInputProps {
-
+  paciente_id: string | number | null | undefined
 }
 
 export const SimpleTextInput: React.FC<TextInputProps> = props => {
     const [text, setText] = useState('');
+
+
+    const handlePut = () => {
+      api.put(`/paciente/${props.paciente_id}/intervencao`, {
+        intervencao: text
+      }).then((response) => console.log(response.data))
+  }
 
     return(
     <TextInput
@@ -23,7 +31,7 @@ export const SimpleTextInput: React.FC<TextInputProps> = props => {
       selectionColor='#a9a9a9'
       right={<TextInput.Icon 
         name={()=> <Ionicons name="md-send" size={24} color="#000" />}
-        onPress={() => {}} />}
+        onPress={() => handlePut()} />}
       /> 
     );
 
