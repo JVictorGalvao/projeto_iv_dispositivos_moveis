@@ -14,11 +14,15 @@ class BatimentoCardiaco(BaseModel):
 
 class Ultrassom(BaseModel):
     ultrassom: str
+
+class Intervencao(BaseModel):
+    intervencao: str
 class Paciente(BaseModel):
-    nome: str
+    nome: str = ''
     oxigenacao: float
     batimento_cardiaco: float
-    ultrassom: str
+    ultrassom: str = ''
+    intervencao: str = ''
 
 
 @app.get('/')
@@ -39,7 +43,7 @@ def create_paciente(paciente: Paciente):
     return db[-1]
 
 @app.put('/paciente/{paciente_id}/batimentos')
-def update_oxigenacao(paciente_id: int, dados: BatimentoCardiaco):
+def update_batimentos(paciente_id: int, dados: BatimentoCardiaco):
     stored_paciente_data = db[paciente_id-1]
     stored_paciente_model = Paciente(**stored_paciente_data)
     update_data = dados.dict(exclude_unset=True)
@@ -57,7 +61,16 @@ def update_oxigenacao(paciente_id: int, dados: Oxigenacao):
     return updated_paciente
 
 @app.put('/paciente/{paciente_id}/ultrassom')
-def update_oxigenacao(paciente_id: int, dados: Ultrassom):
+def update_ultrassom(paciente_id: int, dados: Ultrassom):
+    stored_paciente_data = db[paciente_id-1]
+    stored_paciente_model = Paciente(**stored_paciente_data)
+    update_data = dados.dict(exclude_unset=True)
+    updated_paciente = stored_paciente_model.copy(update=update_data)
+    db[paciente_id-1] = jsonable_encoder(updated_paciente)
+    return updated_paciente
+
+@app.put('/paciente/{paciente_id}/intervencao')
+def update_intervencao(paciente_id: int, dados: Intervencao):
     stored_paciente_data = db[paciente_id-1]
     stored_paciente_model = Paciente(**stored_paciente_data)
     update_data = dados.dict(exclude_unset=True)

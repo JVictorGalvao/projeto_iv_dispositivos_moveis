@@ -40,6 +40,13 @@ def atualiza_ultrassom(ultrassom: str):
 
     print(r.text)
 
+def atualiza_intevencao(intervencao: str):
+    headers = {'content-type': 'application/json'}
+    payload = {'intervencao': intervencao}
+    r = requests.put('http://127.0.0.1:8000/paciente/1/ultrassom', data=json.dumps(payload), headers=headers)
+
+    print(r.text)
+    
 def main():
     cria_paciente("Maria")
     atualiza_oxigenacao(random.randint(0,120))
