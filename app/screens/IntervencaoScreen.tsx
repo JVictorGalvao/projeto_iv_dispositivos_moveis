@@ -6,9 +6,9 @@ import ScreenTitle from '../components/ScreenTitle';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import style from '../assets/styles';
-import { Button, TextInput } from 'react-native-paper';
 import SimpleTextInput from '../components/TextInput';
 import { maxValue, minValue } from '../constants/Constants';
+import BackButton from '../components/BackButton';
 
 
 export default function IntervencaoScreen() {
@@ -17,6 +17,7 @@ export default function IntervencaoScreen() {
 
     return( 
         <ScreenContainer>
+            <BackButton />
             <ScreenTitle title='Intervenção'/>
             <Separator vertical size={24}/>
                 <View style={style.line}>

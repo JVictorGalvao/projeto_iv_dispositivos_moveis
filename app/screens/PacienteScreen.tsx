@@ -9,6 +9,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import style from '../assets/styles';
 import { ActivityIndicator, Button } from 'react-native-paper';
 import { maxValue, minValue } from '../constants/Constants';
+import BackButton from '../components/BackButton';
 
 
 interface IPaciente {
@@ -43,6 +44,7 @@ export default function PacienteScreen() {
     } else {
     return( 
         <ScreenContainer>
+            <BackButton />
             <ScreenTitle title={`${paciente.nome}`}/>
             <Separator vertical size={24}/>
             <View style={style.line}>
