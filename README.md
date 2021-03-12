@@ -40,6 +40,11 @@ Quando acabar a instalação, basta navegar para a pasta `/app/` e executar o co
 
 `expo start`
 
+A seguinte janela irá se abrir no navegador e será possível abrir emuladores por ela, ou escanear o qrcode para abrir o aplicativo no próprio dispositivo pelo aplicativo `Expo Go`
+
+![image](https://user-images.githubusercontent.com/51730016/111005212-245fe080-8369-11eb-94c8-b7246d5a9069.png)
+
+
 
 
 
