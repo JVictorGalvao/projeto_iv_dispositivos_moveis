@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { ScreenContainer } from '../components/ScreenContainer';
 import { Separator } from '../components/Separator';
-import ScreenTitle from '../components/ScreenTitle';
+import {ScreenTitle} from '../components/ScreenTitle';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import style from '../assets/styles';

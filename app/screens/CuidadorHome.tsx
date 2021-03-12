@@ -4,15 +4,13 @@ import { ScreenContainer } from '../components/ScreenContainer';
 import { Separator } from '../components/Separator';
 import api from '../service/api';
 import CardPaciente from '../components/Card';
-import { ScreenTitleButton } from '../components/ScreenTitle';
+import {ScreenTitleButton} from '../components/ScreenTitle';
 import { maxValue, minValue } from '../constants/Constants';
 import { View, Text } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 
-export default function NeurologistaHome() {
-  const [pronto, setPronto] = useState<Boolean>(false)
+export default function CuidadorHome() {
   const [pacientes, setPacientes] = useState([]);
-  const [intevencao, setIntervencao] = useState<Boolean>(false);
 
   useEffect( () => {
     if(pacientes[0] == undefined){
@@ -38,7 +36,7 @@ export default function NeurologistaHome() {
     return (
       <ScreenContainer>
          <ScreenTitleButton 
-          title="Pacientes "/>
+          title="Cuidador "/>
           <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
             <ActivityIndicator animating={true} color={'black'} size={64}/>
           </View>
@@ -48,7 +46,7 @@ export default function NeurologistaHome() {
     return(
       <ScreenContainer>
         <ScreenTitleButton 
-          title="Pacientes "/>
+          title="Cuidador"/>
         <Separator vertical size={24}/>
         {pacientes.map((
           paciente: { oxigenacao: number, batimento_cardiaco: number, nome: string, ultrassom: string },

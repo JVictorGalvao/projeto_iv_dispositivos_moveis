@@ -1,5 +1,4 @@
-import React, { useEffect } from "react"
-import { Dimensions } from "react-native"
+import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
 import NeurologistaHome from "../screens/NeurologistaHome"
 import PacienteScreen from "../screens/PacienteScreen"
@@ -7,15 +6,8 @@ import IntervencaoScreen from "../screens/IntervencaoScreen"
 
 const Stack = createStackNavigator()
 
-interface ReviewerRoutesProps { }
+interface NeurologistaRouteProps { }
 
-// function HomeNeurologistaStack() {
-//   return (
-//     <Stack.Navigator screenOptions={{ headerShown: false }}>
-//       <Stack.Screen name="HomeNeurologista" component={NeurologistaHome} />
-//     </Stack.Navigator>
-//   )
-// }
 
 function NeurologistaStack(){
     return(
@@ -27,7 +19,7 @@ function NeurologistaStack(){
     )
 }
 
-const NeurologistaRoute: React.FC<ReviewerRoutesProps> = props => {
+const NeurologistaRoute: React.FC<NeurologistaRouteProps> = props => {
   return (
     <Stack.Navigator 
       screenOptions={{ headerShown: false }} 

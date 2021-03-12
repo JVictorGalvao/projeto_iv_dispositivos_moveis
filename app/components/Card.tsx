@@ -31,14 +31,14 @@ const CardPaciente: React.FC<CardProps> = ({
                 <Title>Batimentos: {batimento_cardiaco}</Title>
                 <Title>Oxigenacao: {oxigenacao}</Title>
             </Card.Content>
-            <Card.Actions>
+            <Card.Actions style={{ flexDirection: 'row',
+                justifyContent:'space-between', alignItems: 'center'}}>
                 <Button mode='contained' color="white"
                     onPress={()=> navigation.navigate("NeurologistaStack", {
                     screen: "PacienteScreen",
                     params: {index: index}})}>
                         Ver dados
                 </Button>
-                <Separator size={56}/>
                 <Button mode='contained' color="white"
                     onPress={()=> navigation.navigate("NeurologistaStack", {
                     screen: "IntervencaoScreen",

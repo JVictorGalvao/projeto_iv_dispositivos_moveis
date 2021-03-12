@@ -5,6 +5,7 @@ import PlainHeader from './components/PlainHeader';
 
 import useCachedResources from './hooks/useCachedResources';
 import { RootNavigator } from './navigation/RootNavigator';
+import { Provider } from './service/Provider';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -13,13 +14,16 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <SafeAreaView style={{flex:1, backgroundColor: "white"}}>
-          <StatusBar barStyle="light-content" />
-          <PlainHeader/>
-          <RootNavigator/>
-        </SafeAreaView>
-      </SafeAreaProvider>
+      <Provider>
+        <SafeAreaProvider>
+          <SafeAreaView style={{flex:1, backgroundColor: "white"}}>
+            <StatusBar barStyle="light-content" />
+            <PlainHeader/>
+            <RootNavigator/>
+          </SafeAreaView>
+        </SafeAreaProvider>
+      </Provider>
+      
     );
   }
 }

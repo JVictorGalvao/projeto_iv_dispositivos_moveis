@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ScreenContainer } from '../components/ScreenContainer';
 import { Separator } from '../components/Separator';
 import api from '../service/api';
-import ScreenTitle from '../components/ScreenTitle';
+import {ScreenTitle} from '../components/ScreenTitle';
 import { View, Text, Image } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import style from '../assets/styles';
@@ -17,6 +17,7 @@ interface IPaciente {
     batimento_cardiaco: number
     oxigenacao: number
     ultrassom: string
+    intervencao: string
 }
 
 
@@ -28,13 +29,14 @@ export default function PacienteScreen() {
 
     useEffect( () => {
         const interval = setInterval(() => {
-            api.get(`/paciente/${route.params?.index-1}`).then((response) =>
+            api.get(`/paciente/${route.params?.index}`).then((response) =>
             {console.log(response.data);
               setPaciente(response.data)
           });
         }, 1000)
         return () => clearInterval(interval)
       });
+      
     if (paciente.ultrassom == undefined) {
         return (
         <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
