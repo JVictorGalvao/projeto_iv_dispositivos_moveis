@@ -2,22 +2,21 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { ScreenContainer } from '../components/ScreenContainer';
 import { Separator } from '../components/Separator';
-import {ScreenTitle} from '../components/ScreenTitle';
+import {ScreenTitleIntervencao} from '../components/ScreenTitle';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import style from '../assets/styles';
 import SimpleTextInput from '../components/TextInput';
-import { maxValue, minValue } from '../constants/Constants';
+import { severoMax, severoMin } from '../constants/Constants';
 import BackButton from '../components/BackButton';
 
 
 export default function IntervencaoScreen() {
     const route: any = useRoute()
-
     return( 
         <ScreenContainer>
             <BackButton />
-            <ScreenTitle title='Intervenção'/>
+            <ScreenTitleIntervencao situacao={1} title='Intervenção'/>
             <Separator vertical size={24}/>
                 <View style={style.line}>
                     <Text style={style.text}>{'Paciente: '}</Text>
@@ -26,16 +25,16 @@ export default function IntervencaoScreen() {
                 <Separator vertical size={12}/>
                 <View style={style.line}>
                     <Text style={style.text}>{'Batimentos por minuto: '}</Text>
-                    <Text style={(route.params?.batimento_cardiaco >= maxValue || 
-                        route.params?.batimento_cardiaco <= minValue) ?
-                        style.resultbad : style.resultgood}> {`${route.params?.batimento_cardiaco}`} </Text>
+                    <Text style={{color: ((route.params?.severidade_batimento_cardiaco == 1) ? '#ff726f' : 
+                    ((route.params?.severidade_batimento_cardiaco == 2) ? "#ffce00" : "#a5d610")),
+                    fontSize: 20, fontWeight: 'bold'}}> {`${route.params?.batimento_cardiaco}`} </Text>
                 </View>
                 <Separator vertical size={12}/>
                 <View style={style.line}>
                     <Text style={style.text}>{'Oxigenação: '}</Text>
-                    <Text style={(route.params?.oxigenacao >= maxValue ||
-                        route.params?.oxigenacao <= minValue) ?
-                        style.resultbad : style.resultgood}>{`${route.params?.oxigenacao}`}</Text>
+                    <Text style={{color: ((route.params?.severidade_oxigenacao == 1) ? '#ff726f' : 
+                    ((route.params?.severidade_oxigenacao == 2) ? "#ffce00" : "#a5d610")),
+                    fontSize: 20, fontWeight: 'bold'}}>{`${route.params?.oxigenacao}`}</Text>
                 </View>
                 <Separator vertical size={12}/>
                 <View style={style.line}>
@@ -46,7 +45,7 @@ export default function IntervencaoScreen() {
                         source={{uri: `${route.params?.ultrassom}`}}/>
                 </View>
                 <Separator vertical size={42}/>
-                <SimpleTextInput paciente_id={route.params?.index}/>
+                <SimpleTextInput paciente_id={route.params?.index+1}/>
         </ScreenContainer>
     );        
 };

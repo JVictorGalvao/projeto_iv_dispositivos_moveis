@@ -14,16 +14,6 @@ import { StyleSheet } from "react-native"
         fontSize: 20,
         fontWeight: 'bold', 
     },
-    resultgood:{
-      color: "#a5d610",
-      fontSize: 20,
-      fontWeight: 'bold', 
-    },
-    resultbad:{
-      color: "#ff726f",
-      fontSize: 20,
-      fontWeight: 'bold', 
-    },
     line: {
         flexDirection: 'row',
         alignItems: 'center'

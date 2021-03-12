@@ -1,4 +1,7 @@
-const maxValue = 115
-const minValue = 5
+const severoMax = 115
+const severoMin = 5
+const moderadoMax = 105
+const moderadoMin = 15
 
-export {maxValue, minValue}
+
+export {severoMax, severoMin, moderadoMax, moderadoMin}

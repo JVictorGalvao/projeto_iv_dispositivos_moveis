@@ -8,19 +8,27 @@ app = FastAPI()
 db = []
 class Oxigenacao(BaseModel):
     oxigenacao: float
-
+    severidade_oxigenacao: float
 class BatimentoCardiaco(BaseModel):
     batimento_cardiaco: float
-
+    severidade_batimento_cardiaco: float
 class Ultrassom(BaseModel):
     ultrassom: str
 
 class Intervencao(BaseModel):
     intervencao: str
+
+class Dados(BaseModel):
+    oxigenacao: float
+    severidade_oxigenacao: float
+    batimento_cardiaco: float
+    severidade_batimento_cardiaco: float
 class Paciente(BaseModel):
     nome: str = ''
     oxigenacao: float
+    severidade_oxigenacao: float
     batimento_cardiaco: float
+    severidade_batimento_cardiaco: float
     ultrassom: str = ''
     intervencao: str = ''
 
@@ -71,6 +79,15 @@ def update_ultrassom(paciente_id: int, dados: Ultrassom):
 
 @app.put('/paciente/{paciente_id}/intervencao')
 def update_intervencao(paciente_id: int, dados: Intervencao):
+    stored_paciente_data = db[paciente_id-1]
+    stored_paciente_model = Paciente(**stored_paciente_data)
+    update_data = dados.dict(exclude_unset=True)
+    updated_paciente = stored_paciente_model.copy(update=update_data)
+    db[paciente_id-1] = jsonable_encoder(updated_paciente)
+    return updated_paciente
+
+@app.put('/paciente/{paciente_id}/dados')
+def update_dados(paciente_id: int, dados: Dados):
     stored_paciente_data = db[paciente_id-1]
     stored_paciente_model = Paciente(**stored_paciente_data)
     update_data = dados.dict(exclude_unset=True)

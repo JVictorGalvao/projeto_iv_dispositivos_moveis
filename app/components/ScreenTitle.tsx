@@ -1,13 +1,14 @@
 import React, { useContext } from "react"
-import { StyleSheet, Text, View, ViewStyle } from "react-native"
+import { ActivityIndicator, StyleSheet, Text, View, ViewStyle } from "react-native"
 import { Button } from "react-native-paper"
-import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Context } from "../service/Provider";
 
 
 interface ScreenContainerProps {
   title: string
   style?: ViewStyle
+  situacao?: number
 }
 
 const ScreenTitleButton: React.FC<ScreenContainerProps> = props => {
@@ -18,6 +19,16 @@ const ScreenTitleButton: React.FC<ScreenContainerProps> = props => {
       <Text style={styles.header}>{props.title}</Text>
       <Button color="#d7f2f3" onPress={() => {logout();}}>{<MaterialIcons name="logout" size={24} color="black" />}</Button>
       
+    </View>
+  )
+}
+
+const ScreenTitleIntervencao: React.FC<ScreenContainerProps> = props => {
+  return (
+    <View style={[styles.titleContainer, props.style]}>
+      <Text style={styles.header}>{props.title}</Text>
+      {props.situacao == 1 ? (<FontAwesome name="square-o" size={24} color="black" />): 
+      (props.situacao == 2 ? <FontAwesome name="check-square-o" size={24} color="black" /> : null)}
     </View>
   )
 }
@@ -50,4 +61,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export {ScreenTitle , ScreenTitleButton} 
+export {ScreenTitle , ScreenTitleButton, ScreenTitleIntervencao} 
