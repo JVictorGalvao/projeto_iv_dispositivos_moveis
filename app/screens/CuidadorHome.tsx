@@ -21,16 +21,7 @@ interface IPaciente {
 export default function CuidadorHome() {
   const [paciente, setPaciente] = useState<IPaciente>([]);
 
-  useEffect( () => {
-    if(paciente.ultrassom == undefined){
-      const interval = setInterval(() => {
-        api.get('/paciente/1').then((response) =>
-        {console.log(response.data);
-          setPaciente(response.data)
-        });
-      }, 1000)
-      return () => clearInterval(interval)}
-    else {
+  useEffect( () => {  
       const interval = setInterval(() => {
         api.get('/paciente/1').then((response) =>
         {console.log(response.data);
@@ -38,7 +29,6 @@ export default function CuidadorHome() {
         });
       }, 5000)
       return () => clearInterval(interval)
-    }
   });
 
   if (paciente.ultrassom == undefined) {

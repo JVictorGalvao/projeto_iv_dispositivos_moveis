@@ -15,10 +15,11 @@ import { Context } from '../service/Provider';
 export default function IntervencaoScreen() {
     const route: any = useRoute()
     const { isNeurologista } = useContext(Context);
+      
     return( 
         <ScreenContainer>
             <BackButton />
-            <ScreenTitleIntervencao situacao={1} title={isNeurologista ? "Intervenção" : "Alterações"}/>
+            <ScreenTitleIntervencao title={isNeurologista ? "Intervenção" : "Alterações"}/>
             <Separator vertical size={24}/>
                 <View style={style.line}>
                     <Text style={style.text}>{'Paciente: '}</Text>
@@ -47,7 +48,8 @@ export default function IntervencaoScreen() {
                         source={{uri: `${route.params?.ultrassom}`}}/>
                 </View>
                 <Separator vertical size={42}/>
-                <SimpleTextInput paciente_id={route.params?.index+1}/>
+                {console.log(route.params?.index)}
+                <SimpleTextInput paciente_id={1}/>
         </ScreenContainer>
     );        
 };

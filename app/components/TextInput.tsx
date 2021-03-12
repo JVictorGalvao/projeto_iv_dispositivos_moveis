@@ -8,11 +8,11 @@ import { Alert } from "react-native";
 
 interface TextInputProps {
   paciente_id: string | number | null | undefined
-  status_intervencao?: number | undefined
 }
 
 export const SimpleTextInput: React.FC<TextInputProps> = props => {
     const [text, setText] = useState('');
+
 
     const EnvioOk = () =>{
       Alert.alert(
@@ -25,7 +25,7 @@ export const SimpleTextInput: React.FC<TextInputProps> = props => {
             },
           ],
         );
-      setText('')
+        setText("")
   }
 
     const handlePut = () => {

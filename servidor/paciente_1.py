@@ -20,6 +20,14 @@ nome = [
 
 fila = PriorityQueue()
 
+def define_status_intervencao(dado: str):
+    if (dado == ""):
+        return 1
+    elif (dado == None):
+        return 2
+    elif (dado != ""):
+        return 3
+
 def define_severidade(dado: float):
     if(dado >= 115 or dado <= 5):
         return 1
@@ -61,7 +69,7 @@ def atualiza_ultrassom(ultrassom: str):
 def atualiza_intevencao(intervencao: str):
     headers = {'content-type': 'application/json'}
     payload = {'intervencao': intervencao }
-    r = requests.put('http://127.0.0.1:3000/paciente/1/intevencao', data=json.dumps(payload), headers=headers)
+    r = requests.put('http://127.0.0.1:3000/paciente/1/intervencao', data=json.dumps(payload), headers=headers)
 
     print(r.text)
 

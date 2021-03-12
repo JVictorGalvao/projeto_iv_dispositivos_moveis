@@ -1,8 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, View } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import api from '../service/api';
 import { Separator } from './Separator';
 
 interface CardProps{
@@ -24,6 +25,8 @@ const CardPaciente: React.FC<CardProps> = ({
     severidade_oxigenacao,
     ultrassom,
 }) => {
+   
+
     const navigation = useNavigation()
     const alertaSevero = () =>{
         Alert.alert(
@@ -104,6 +107,35 @@ const CardCuidador: React.FC<CardProps> = ({
     severidade_oxigenacao,
     ultrassom,
 }) => {
+    const [paciente, setPaciente] = useState([]);
+
+    useEffect( () => {
+        const interval = setInterval(() => {
+            api.get('/paciente/1').then((response) =>
+            {console.log(response.data);
+              setPaciente(response.data)
+            });
+          }, 5000)
+          return () => clearInterval(interval)
+      }, [])
+
+    const handlePut = () => {
+        api.put(`/paciente/1/intervencao`, {
+          intervencao: "undefined",
+        }).then((response) => console.log(response.data))
+    }
+  
+    const alertaIntervencao = () =>{
+        Alert.alert(
+            `${nome} recebeu uma intervenção!`,
+            `${paciente.intervencao}`,
+            [
+              
+              { text: "Ok", onPress: () => handlePut()}
+            ],
+            { cancelable: false }
+          );
+    }
     const navigation = useNavigation()
     return(
         <Card style={{backgroundColor: ((severidade_oxigenacao == 1 || severidade_batimento_cardiaco == 1) ? '#ff726f' : 
@@ -129,8 +161,8 @@ const CardCuidador: React.FC<CardProps> = ({
                     severidade_batimento_cardiaco: severidade_batimento_cardiaco}})}>
                         Notificar alterações
                 </Button>
-               
             </Card.Actions>
+            {paciente.intervencao != "undefined" ? alertaIntervencao() : null}
         </Card>
     )
 }

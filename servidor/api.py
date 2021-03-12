@@ -23,6 +23,7 @@ class Dados(BaseModel):
     severidade_oxigenacao: float
     batimento_cardiaco: float
     severidade_batimento_cardiaco: float
+
 class Paciente(BaseModel):
     nome: str = ''
     oxigenacao: float

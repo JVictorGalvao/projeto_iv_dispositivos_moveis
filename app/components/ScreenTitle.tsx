@@ -1,8 +1,10 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { ActivityIndicator, StyleSheet, Text, View, ViewStyle } from "react-native"
 import { Button } from "react-native-paper"
 import { AntDesign, FontAwesome, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Context } from "../service/Provider";
+import { useEffect } from "react";
+import api from "../service/api";
 
 
 interface ScreenContainerProps {
@@ -24,11 +26,22 @@ const ScreenTitleButton: React.FC<ScreenContainerProps> = props => {
 }
 
 const ScreenTitleIntervencao: React.FC<ScreenContainerProps> = props => {
+  const [paciente, setPaciente] = useState([]);
+  useEffect( () => {
+    const interval = setInterval(() => {
+      api.get('/paciente/1').then((response) =>
+      {console.log(response.data);
+        setPaciente(response.data)
+      });
+    }, 5000)
+    return () => clearInterval(interval)
+  })
+
   return (
     <View style={[styles.titleContainer, props.style]}>
       <Text style={styles.header}>{props.title}</Text>
-      {props.situacao == 1 ? (<FontAwesome name="square-o" size={24} color="black" />): 
-      (props.situacao == 2 ? <FontAwesome name="check-square-o" size={24} color="black" /> : null)}
+      {paciente.intervencao == "undefined" ? (<FontAwesome name="check-square-o" size={24} color="black" />): 
+       <FontAwesome name="square-o" size={24} color="black" /> }
     </View>
   )
 }
