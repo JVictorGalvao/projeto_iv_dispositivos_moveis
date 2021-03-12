@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ScreenContainer } from '../components/ScreenContainer';
 import { Separator } from '../components/Separator';
 import api from '../service/api';
-import CardPaciente from '../components/Card';
+import {CardPaciente} from '../components/Card';
 import { ScreenTitleButton } from '../components/ScreenTitle';
 import { View, Text } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
@@ -30,8 +30,6 @@ export default function NeurologistaHome() {
       return () => clearInterval(interval)
     }
   });
-
-
 
   if (pacientes[0] == undefined) {
     return (
@@ -71,5 +69,3 @@ export default function NeurologistaHome() {
       </ScreenContainer>
     )
 };}
-
-

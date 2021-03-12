@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ScreenContainer } from '../components/ScreenContainer';
 import { Separator } from '../components/Separator';
 import {ScreenTitleIntervencao} from '../components/ScreenTitle';
@@ -9,14 +9,16 @@ import style from '../assets/styles';
 import SimpleTextInput from '../components/TextInput';
 import { severoMax, severoMin } from '../constants/Constants';
 import BackButton from '../components/BackButton';
+import { Context } from '../service/Provider';
 
 
 export default function IntervencaoScreen() {
     const route: any = useRoute()
+    const { isNeurologista } = useContext(Context);
     return( 
         <ScreenContainer>
             <BackButton />
-            <ScreenTitleIntervencao situacao={1} title='Intervenção'/>
+            <ScreenTitleIntervencao situacao={1} title={isNeurologista ? "Intervenção" : "Alterações"}/>
             <Separator vertical size={24}/>
                 <View style={style.line}>
                     <Text style={style.text}>{'Paciente: '}</Text>

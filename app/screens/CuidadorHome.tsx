@@ -3,59 +3,59 @@ import { useEffect, useState } from 'react';
 import { ScreenContainer } from '../components/ScreenContainer';
 import { Separator } from '../components/Separator';
 import api from '../service/api';
-import CardPaciente from '../components/Card';
+import { CardCuidador } from '../components/Card';
 import {ScreenTitleButton} from '../components/ScreenTitle';
-import { severoMax, severoMin } from '../constants/Constants';
 import { View, Text } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 
+interface IPaciente {
+  nome: string
+  batimento_cardiaco: number
+  severidade_batimento_cardiaco: number
+  oxigenacao: number
+  severidade_oxigenacao: number
+  ultrassom: string
+  intervencao: string
+}
+
 export default function CuidadorHome() {
-  const [pacientes, setPacientes] = useState([]);
+  const [paciente, setPaciente] = useState<IPaciente>([]);
 
   useEffect( () => {
-    if(pacientes[0] == undefined){
+    if(paciente.ultrassom == undefined){
       const interval = setInterval(() => {
-        api.get('/pacientes').then((response) =>
+        api.get('/paciente/1').then((response) =>
         {console.log(response.data);
-          setPacientes(response.data)
+          setPaciente(response.data)
         });
       }, 1000)
       return () => clearInterval(interval)}
     else {
       const interval = setInterval(() => {
-        api.get('/pacientes').then((response) =>
+        api.get('/paciente/1').then((response) =>
         {console.log(response.data);
-          setPacientes(response.data)
+          setPaciente(response.data)
         });
-      }, 10000)
+      }, 5000)
       return () => clearInterval(interval)
     }
   });
 
-  if (pacientes[0] == undefined) {
+  if (paciente.ultrassom == undefined) {
     return (
-      <ScreenContainer>
-         <ScreenTitleButton 
-          title="Cuidador "/>
-          <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-            <ActivityIndicator animating={true} color={'black'} size={64}/>
-          </View>
-      </ScreenContainer>
+    <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+        <ActivityIndicator animating={true} color={'black'} size={64}/>
+    </View>
       );
-  }else {
+} else {
     return(
       <ScreenContainer>
         <ScreenTitleButton 
           title="Cuidador"/>
-        <Separator vertical size={24}/>
-        {pacientes.map((
-          paciente: { oxigenacao: number, batimento_cardiaco: number, nome: string, ultrassom: string,
-            severidade_oxigenacao: number, severidade_batimento_cardiaco: number },
-            index: string | number | null | undefined) => {
-              return (         
-              <React.Fragment key={index}>
-                <CardPaciente
-                  index={index}
+        <Separator vertical size={24}/>        
+              <React.Fragment key={1}>
+                <CardCuidador
+                  index={1}
                   severidade_oxigenacao= {paciente.severidade_oxigenacao}
                   severidade_batimento_cardiaco = {paciente.severidade_batimento_cardiaco}
                   nome={paciente.nome}
@@ -65,10 +65,6 @@ export default function CuidadorHome() {
                 />
               <Separator vertical size={24}/>
             </React.Fragment>
-          )
-        })}
       </ScreenContainer>
     )
 };}
-
-

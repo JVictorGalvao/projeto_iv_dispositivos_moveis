@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ScreenContainer } from '../components/ScreenContainer';
 import { Separator } from '../components/Separator';
 import api from '../service/api';
@@ -9,6 +9,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import style from '../assets/styles';
 import { ActivityIndicator, Button } from 'react-native-paper';
 import BackButton from '../components/BackButton';
+import { Context } from '../service/Provider';
 
 
 interface IPaciente {
@@ -26,6 +27,7 @@ export default function PacienteScreen() {
     const [paciente , setPaciente] = useState<IPaciente>([]);
     const route: any = useRoute()
     const navigation = useNavigation()
+    const { isNeurologista } = useContext(Context);
 
     useEffect( () => {
         const interval = setInterval(() => {
@@ -74,13 +76,19 @@ export default function PacienteScreen() {
                         source={{uri: `${paciente.ultrassom}`}}/>
                 </View>
                 <Separator vertical size={24}/>
-                <Button mode='contained' color="#d7f2f3"
+                {isNeurologista ? <Button mode='contained' color="#d7f2f3"
                     onPress={()=> navigation.navigate("NeurologistaStack", {
                     screen: "IntervencaoScreen",
                     params: {index: route.params?.id, nome: paciente.nome, batimento_cardiaco: paciente.batimento_cardiaco,
                     oxigenacao: paciente.oxigenacao, ultrassom: paciente.ultrassom}})}>
-                        Propor intervenção
-                </Button>
+                        {isNeurologista ? "Propor intervenção" : "Notificar alterações"}
+                </Button> : <Button mode='contained' color="#d7f2f3"
+                    onPress={()=> navigation.navigate("CuidadorStack", {
+                    screen: "IntervencaoScreen",
+                    params: {index: route.params?.id, nome: paciente.nome, batimento_cardiaco: paciente.batimento_cardiaco,
+                    oxigenacao: paciente.oxigenacao, ultrassom: paciente.ultrassom}})}>
+                        {isNeurologista ? "Propor intervenção" : "Notificar alterações"}
+                </Button> }
         </ScreenContainer>
     )};}
   

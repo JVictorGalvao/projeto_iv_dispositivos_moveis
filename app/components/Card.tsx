@@ -89,10 +89,51 @@ const CardPaciente: React.FC<CardProps> = ({
                         Propor intervenção
                 </Button>
             </Card.Actions>
-        {/* {((severidade_oxigenacao == 1 || severidade_batimento_cardiaco == 1) ? alertaSevero() : 
-        ((severidade_oxigenacao == 2 || severidade_batimento_cardiaco == 2) ? alertaModerado() : null))} */}
+        {((severidade_oxigenacao == 1 || severidade_batimento_cardiaco == 1) ? alertaSevero() : 
+        ((severidade_oxigenacao == 2 || severidade_batimento_cardiaco == 2) ? alertaModerado() : null))}
         </Card>
     )
 }
 
-export default CardPaciente
+const CardCuidador: React.FC<CardProps> = ({
+    index,
+    nome,
+    batimento_cardiaco,
+    oxigenacao,
+    severidade_batimento_cardiaco,
+    severidade_oxigenacao,
+    ultrassom,
+}) => {
+    const navigation = useNavigation()
+    return(
+        <Card style={{backgroundColor: ((severidade_oxigenacao == 1 || severidade_batimento_cardiaco == 1) ? '#ff726f' : 
+        ((severidade_oxigenacao == 2 || severidade_batimento_cardiaco == 2) ? "#ffff80" : "#d7f2f3"))}}> 
+            <Card.Title titleStyle={{textAlign:'center'}} title={`${nome}`}/>
+            <Card.Content>
+                <Title>Batimentos: {batimento_cardiaco}</Title>
+                <Title>Oxigenacao: {oxigenacao}</Title>
+            </Card.Content>
+            <Card.Actions style={{ flexDirection: 'row',
+                justifyContent:'space-between'}}>
+                <Button mode='contained' color="white"
+                    onPress={()=> navigation.navigate("CuidadorStack", {
+                    screen: "PacienteScreen",
+                    params: {index: index-1}})}>
+                        Ver dados
+                </Button>
+                <Button mode='contained' color="white"
+                    onPress={()=> navigation.navigate("CuidadorStack", {
+                    screen: "IntervencaoScreen",
+                    params: {index: index, nome: nome, batimento_cardiaco: batimento_cardiaco,
+                    oxigenacao: oxigenacao, ultrassom: ultrassom, severidade_oxigenacao: severidade_oxigenacao,
+                    severidade_batimento_cardiaco: severidade_batimento_cardiaco}})}>
+                        Notificar alterações
+                </Button>
+               
+            </Card.Actions>
+        </Card>
+    )
+}
+
+
+export  {CardPaciente, CardCuidador}
