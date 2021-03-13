@@ -9,6 +9,8 @@ Desenvolver uma aplicação que consiste em um aplicativo de monitoramento em te
 + [Api](#api)
 + [Aplicativo](#aplicativo)
     - [Rota do Neurologista](#neurologista)
+    - [Rota do Cuidador](#cuidador)
++ [Melhorias e ideias](#melhorias)
 
 
 <h1 id="configuracao">Configurando o ambiente</h2>
@@ -159,3 +161,64 @@ A escolha da rota é feita com a alteração de estado, fazendo que as telas só
 ```
 
 <h2 id='neurologista'><b>Neurologista</b></h3>
+
+O módulo do neurologista consiste em basicamente três telas, uma home page que exibe todos os pacientes, uma tela que exibe os dados detalhados de um paciente específico e uma tela para enviar intervenções.
+
+<div align="center">
+    <p float="left">
+        <img width=250 src="img/neurologista.gif" alt="descrição da imagem">
+    <p>Figura 3. Cards indicando o grau de severidade</p>
+    </p>
+</div>
+
+Nesta tela os cards alteram sua cor de acordo com os dados vitais do paciente, o vermelho representa severo, o amarelo moderado e o azul baixo, além de alterar as cores para uma melhor visualização geral do estado do paciente, tambem é exibido um alerta quando o paciente está no nível severo ou moderado.
+
+<div align="center">
+    <p float="left">
+        <img width=250 src="img/dados.gif" alt="descrição da imagem">
+    <p>Figura 4. Tela de dados</p>
+    </p>
+</div>
+
+Ao clicar em ver dados, o usuário é redirecionado para a página pessoal do paciente, lá os dados são atualizados em tempo real, para melhor acompanhamento, por lá também é possível propor uma intervenção.
+
+
+<div align="center">
+    <p float="left">
+        <img width=250 src="img/alerta.gif" alt="descrição da imagem">
+    <p>Figura 5. Alerta do paciente</p>
+    </p>
+</div>
+
+Após receber um alerta é possível propor uma intervenção ao cuidador imediatamente, ao fazer uma intervenção o status é alterado e é possível saber quando o cuidador executa a intervenção.
+
+
+<div align="center">
+    <p float="left">
+        <img width=250 src="img/intervencao.gif" alt="descrição da imagem">
+    <p>Figura 6. Tela de intervenção</p>
+    </p>
+</div>
+
+Quando o ícone se altera para vazio, significa que uma intervenção foi enviada, quando o cuidador confirma ela, o ícone se altera para concluído.
+
+<h2 id='cuidador'><b>Cuidador</b></h3>
+
+O módulo do cuidador se assemelha com o do neurologista, nele é possível ver os dados do paciente de forma rápida no card da home page, o módulo do cuidador também possui uma tela que exibe os dados em tempo real, por lá é possível notificar alterações.
+
+<div align="center">
+    <p float="left">
+        <img width=250 src="img/alertacuidador.gif" alt="descrição da imagem">
+    <p>Figura 7. Alerta de intervenção sugerida</p>
+    </p>
+</div>
+
+De modo semelhante ao neurologista, é possível enviar uma alteração.
+
+Por ultimo e não menos importante, as homes possuem um botão de logoff para deslogar do usuário.
+
+<h1 id="melhorias">Planos futuros</h2>
+
+Além do proposto como feature bônus, as notificações, durante o desenvolvimento percebi que uma coisa que melhoraria muito a aplicação seria a conexão com um banco de dados, com isso seria possível observar o histórico do paciente, além de poder gerar gráficos para melhorar a visualização de dados ao longo do tempo, também seria interessante implementar um chat, para que o cuidador pudesse tirar eventuais dúvidas com o médico. 
+
+Como o aplicativo é dedicado ao home care, também poderia ser implementado um módulo para o cuidador gerenciar medicamentos, assim poderiam haver notificações nos horários de tomá-los, além do médico poder acompanhar se o tratamento está sendo seguido e podendo ver em tempo real o quadro do paciente para poder receitar ou suspender determinados medicamentos e também alterar doses.
